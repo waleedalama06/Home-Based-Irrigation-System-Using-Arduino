@@ -11,14 +11,14 @@ int percentValue;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(relay, OUTPUT);
-  pinMode(sensor, INPUT_PULLUP);
-  pinMode(blueled, OUTPUT);
-  pinMode(redled, OUTPUT);
-  pinMode(greenled,OUTPUT);
-  pinMode(buzzer,OUTPUT);
-  pinMode(Float_switch,INPUT_PULLUP);
-  digitalWrite(relay, HIGH);
+  pinMode(relay, OUTPUT); //Set pin 12 as OUTPUT pin, to send signal to relay
+  pinMode(sensor, INPUT_PULLUP); //Set pin A4 as INPUT_PULLUP pin, to send signal to moisture sensor
+  pinMode(blueled, OUTPUT); //Set pin 9 as OUTPUT pin, to send signal to led light blue
+  pinMode(redled, OUTPUT); //Set pin 10 as OUTPUT pin, to send signal to led light red
+  pinMode(greenled,OUTPUT); //Set pin 8 as OUTPUT pin, to send signal to led light green
+  pinMode(buzzer,OUTPUT); //Set pin 11 as OUTPUT pin, to send signal to buzzer
+  pinMode(Float_switch,INPUT_PULLUP); //Set pin 3 as INPUT_PULLUP pin, to send signal to Float switch
+  digitalWrite(relay, HIGH); //if soil moisture sensor provides HIGH value send HIGH value to relay
 
 }
 
@@ -34,25 +34,26 @@ Serial.print(percentValue);
 Serial.println("%");
 delay(1000);
 
-if (sensorValue > moisture) 
+if (sensorValue > moisture) //start to water the plant
 {
-  digitalWrite(relay, LOW);
+  digitalWrite(relay, LOW); 
    digitalWrite(blueled, LOW);
    digitalWrite(redled, HIGH);
    Serial.println("Water Pump is ON ");
    Serial.println("Moisture : Dry ");
   delay(1000);
  } 
- else
+ else //stop watering the plants
  {
   digitalWrite(relay, HIGH);
   digitalWrite(blueled, HIGH);
    digitalWrite(redled, LOW);
   Serial.println("Water Pump is OFF");
    Serial.println("Moisture : Wet");
-   delay(1000);
+   delay(5000);
  }
-  if(digitalRead(Float_switch) == HIGH){
+  if(digitalRead(Float_switch) == HIGH)
+  { 
   digitalWrite(greenled,HIGH);
   digitalWrite(buzzer,LOW);
  }
@@ -62,7 +63,7 @@ if (sensorValue > moisture)
   digitalWrite(buzzer,HIGH);
  tone(buzzer,150,1000);
  delay(1000);
- noTone(buzzer);
+ //noTone(buzzer);
 
   }
 }
