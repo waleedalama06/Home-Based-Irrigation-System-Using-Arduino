@@ -8,9 +8,8 @@ int buzzer = 11;
 int Float_switch = 3;
 int sensorValue;
 int percentValue;
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
+void setup() 
+{
   pinMode(relay, OUTPUT); //Set pin 12 as OUTPUT pin, to send signal to relay
   pinMode(sensor, INPUT_PULLUP); //Set pin A4 as INPUT_PULLUP pin, to send signal to moisture sensor
   pinMode(blueled, OUTPUT); //Set pin 9 as OUTPUT pin, to send signal to led light blue
@@ -19,11 +18,12 @@ void setup() {
   pinMode(buzzer,OUTPUT); //Set pin 11 as OUTPUT pin, to send signal to buzzer
   pinMode(Float_switch,INPUT_PULLUP); //Set pin 3 as INPUT_PULLUP pin, to send signal to Float switch
   digitalWrite(relay, HIGH); //if soil moisture sensor provides HIGH value send HIGH value to relay
-
+  Serial.begin(9600);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop() 
+{
+  
 int sensorValue = analogRead(sensor);
   Serial.print("\n\nAnalog Value: ");
   Serial.print(sensorValue);
