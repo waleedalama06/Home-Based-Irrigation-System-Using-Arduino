@@ -6,8 +6,6 @@ int blueled = 9;
 int greenled = 8;
 int buzzer = 11;
 int Float_switch = 3;
-int sensorValue;
-int percentValue;
 void setup() 
 {
   pinMode(relay, OUTPUT); //Set pin 12 as OUTPUT pin, to send signal to relay
